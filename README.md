@@ -28,15 +28,11 @@ Társasjáték lista lekérdezése.<br />
 ![Sequence diagram](doc/img/RendezvenyLista.jpg)
 
 ##Oldaltérkép
-![Sequence diagram](doc/img/map.png)
+![Sequence diagram](doc/img/map.PNG)
 
 ##Adatbázis tervezése
 ![Sequence diagram](doc/img/database.png)
 
-##SZEREPKÖRÖK
-Admin<br />
-Felhasználó<br />
-Látogató<br />
 
 ##Használati eset diagram
 ![Sequence diagram](doc/img/folyamat2.png)

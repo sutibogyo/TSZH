@@ -13,9 +13,9 @@ Gyors működés.<br />
 Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.<br />
 
 ##Szerepkörök, használati esetek, folyamatok meghatározása
-Admin: Van joga rendezvényt létrehozni, módosítani és törölni és a társasjátékok listába is vehet fel esetleg törölhet elemek.<br />
-Felhasználó : Van jog jelezni részvételi szándékát a rendezvényre.<br />
-Látogató : Megtekintheti a rendezvények és a társasjátékok listájt.<br />
+Admin: Van joga rendezvényt létrehozni, módosítani és törölni és a társasjátékok listába is vehet fel elemeket.<br />
+Felhasználó : Van joga jelezni részvételi szándékát a rendezvényre.<br />
+Látogató : Megtekintheti a rendezvények és a társasjátékok listáját.<br />
 
 ##Oldalfunkciók
 Rendezvény létrehozása, törlése, módosítása<br />
@@ -26,7 +26,24 @@ Társasjáték lista lekérdezése.<br />
 ![Sequence diagram](doc/img/Login.jpg)
 ![Sequence diagram](doc/img/TarsasjatekLista.jpg)
 ![Sequence diagram](doc/img/RendezvenyLista.jpg)
+
 ##Oldaltérkép
+![Sequence diagram](doc/img/map.png)
+
+##Adatbázis tervezése
+![Sequence diagram](doc/img/database.png)
+
+##SZEREPKÖRÖK
+Admin<br />
+Felhasználó<br />
+Látogató<br />
+
+##Használati eset diagram
+![Sequence diagram](doc/img/folyamat2.png)
+![Sequence diagram](doc/img/modosit.png)
+
+
+##Végpontok
 GET /: főoldal<br />
 GET /login: bejelentkező oldal<br />
 POST /login: bejelentkezési adatok felküldése<br />
@@ -38,33 +55,8 @@ GET /rendezveny/new: új rendezvény felvitele<br />
 POST /rendezveny/new: új rendezvény felvitele, adatok küldése<br />
 POST /rendezveny/going: részvételi szándék elküldése<br />
 
-##Architektúra terv
-
-##Adatbázis tervezése
-![Sequence diagram](doc/img/database.png)
-
-##SZEREPKÖRÖK
-Szervező
-Belépett felhasználó
-Látogató az oldalon
-
-##Használati eset diagram
-![Sequence diagram](doc/img/folyamat2.png)
-![Sequence diagram](doc/img/modosit.png)
-
-##FOLYAMATOK MEGHATÁROZÁSA
-Login 
-
-##Oldaltérkép
-
-##Végpontok
-
-##Oldalvázlat
-
-##Adatmodel-Adatbázisterv
-
 ##Állapot diagam
 ![UseCaseDiagram](doc/img/UseCaseDiagram.png)
-##DESIGNTERV
+
 
 Fejlesztő környezet:Visual Studio Code

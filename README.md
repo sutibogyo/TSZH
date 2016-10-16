@@ -51,7 +51,7 @@ Login
 ##Adatmodel-Adatbázisterv
 
 ##Állapot diagam
-![UseCaseDiagram](doc\img\UseCaseDiagram.png)
+![UseCaseDiagram](doc/img/UseCaseDiagram.png)
 ##DESIGNTERV
 
 Fejlesztő környezet:Visual Studio Code

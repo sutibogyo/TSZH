@@ -38,7 +38,8 @@ Belépett felhasználó
 Látogató az oldalon
 
 ##Használati eset diagram
-![Sequence diagram](doc/img/folyamat.png)
+![Sequence diagram](doc/img/folyamat2.png)
+![Sequence diagram](doc/img/modosit.png)
 
 ##FOLYAMATOK MEGHATÁROZÁSA
 Login 

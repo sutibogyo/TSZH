@@ -13,9 +13,9 @@ Gyors működés.
 Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
 
 ##Szerepkörök, használati esetek, folyamatok meghatározása
-Admin: Van joga rendezvényt létrehozni, módosítani és törölni és a társasjátékok listába is vehet fel esetleg törölhet elemek. 
-Felhasználó : Van jog jelezni részvételi szándékát a rendezvényre.
-Látogató : Megtekintheti a rendezvények és a társasjátékok listájt.
+*Admin: Van joga rendezvényt létrehozni, módosítani és törölni és a társasjátékok listába is vehet fel esetleg törölhet elemek. 
+*Felhasználó : Van jog jelezni részvételi szándékát a rendezvényre.
+*Látogató : Megtekintheti a rendezvények és a társasjátékok listájt.
 
 ##Oldalfunkciók
 Rendezvény létrehozása, törlése, módosítása

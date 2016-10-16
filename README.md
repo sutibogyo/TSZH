@@ -2,15 +2,15 @@
 
 ##Funkcionális követelmények összegyűjtése
 
-Az admin jogosultságú felhasználó tudjon az oldalon új eseményt létrehozni.
-Az admin jogosultságú felhasználó tudjon az oldalon meglévő eseményt szerkeszteni.
-A felhasználók tudják jelezni a részvételi szándékukat.
-Azoldal látógatói(nem belépett felhasználók) meg tudják nézni az aktuális társasjáték és rendezvény listát listát.
+Az admin jogosultságú felhasználó tudjon az oldalon új eseményt létrehozni.<br />
+Az admin jogosultságú felhasználó tudjon az oldalon meglévő eseményt szerkeszteni.<br />
+A felhasználók tudják jelezni a részvételi szándékukat.<br />
+Azoldal látógatói(nem belépett felhasználók) meg tudják nézni az aktuális társasjáték és rendezvény listát listát.<br />
 
 ##NEM FUNKCIONÁLIS KÖVETELMÉNYEK
-Felhasználóbarát, ergonomikus elrendezés és kinézet.
-Gyors működés.
-Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
+Felhasználóbarát, ergonomikus elrendezés és kinézet.<br />
+Gyors működés.<br />
+Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.<br />
 
 ##Szerepkörök, használati esetek, folyamatok meghatározása
 Admin: Van joga rendezvényt létrehozni, módosítani és törölni és a társasjátékok listába is vehet fel esetleg törölhet elemek.<br />
@@ -18,9 +18,9 @@ Felhasználó : Van jog jelezni részvételi szándékát a rendezvényre.<br />
 Látogató : Megtekintheti a rendezvények és a társasjátékok listájt.<br />
 
 ##Oldalfunkciók
-Rendezvény létrehozása, törlése, módosítása
-Részvételi szándék jelzése
-Társasjáték lista lekérdezése.
+Rendezvény létrehozása, törlése, módosítása<br />
+Részvételi szándék jelzése<br />
+Társasjáték lista lekérdezése.<br />
 
 ##Oldalvázlatok készítése
 

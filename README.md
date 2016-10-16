@@ -23,7 +23,9 @@ Részvételi szándék jelzése<br />
 Társasjáték lista lekérdezése.<br />
 
 ##Oldalvázlatok készítése
-
+![Sequence diagram](doc/img/Login.jpg)
+![Sequence diagram](doc/img/TarsasjatekLista.jpg)
+![Sequence diagram](doc/img/RendezvenyLista.jpg)
 ##Oldaltérkép
 GET /: főoldal<br />
 GET /login: bejelentkező oldal<br />
@@ -39,8 +41,7 @@ POST /rendezveny/going: részvételi szándék elküldése<br />
 ##Architektúra terv
 
 ##Adatbázis tervezése
-
-##Designtervek készítése
+![Sequence diagram](doc/img/database.png)
 
 ##SZEREPKÖRÖK
 Szervező

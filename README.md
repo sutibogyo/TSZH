@@ -38,6 +38,7 @@ Belépett felhasználó
 Látogató az oldalon
 
 ##Használati eset diagram
+![Sequence diagram](doc/img/folyamat.png)
 
 ##FOLYAMATOK MEGHATÁROZÁSA
 Login 

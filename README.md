@@ -24,7 +24,17 @@ Társasjáték lista lekérdezése.<br />
 
 ##Oldalvázlatok készítése
 
-##Site struktúra (oldaltérkép)
+##Oldaltérkép
+GET /: főoldal<br />
+GET /login: bejelentkező oldal<br />
+POST /login: bejelentkezési adatok felküldése<br />
+GET /tarsas/list: társasjátéklista oldal<br />
+GET /tarsas/new: új társasjáték felvitele<br />
+POST /tarsas/new: új társasjáték felvitele, adatok küldése<br />
+GET /rendezveny/list: rendezvénylista oldal<br />
+GET /rendezveny/new: új rendezvény felvitele<br />
+POST /rendezveny/new: új rendezvény felvitele, adatok küldése<br />
+POST /rendezveny/going: részvételi szándék elküldése<br />
 
 ##Architektúra terv
 

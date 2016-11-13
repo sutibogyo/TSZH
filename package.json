@@ -1,0 +1,41 @@
+{
+  "name": "tszh",
+  "version": "1.0.0",
+  "description": "Tarsas-, Szerepjatekos Hetvege hivatalos oldala.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sutibogyo/TSZH.git"
+  },
+  "author": "Német Helga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sutibogyo/TSZH/issues"
+  },
+  "homepage": "https://github.com/sutibogyo/TSZH#readme",
+  "autoload":"true",
+  "dependencies": {
+    "adonis-ace": "^3.0.4",
+    "adonis-auth": "^1.0.4",
+    "adonis-cli": "^2.1.4",
+    "adonis-commands": "^2.1.2",
+    "adonis-fold": "^3.0.3",
+    "adonis-framework": "^3.0.5",
+    "adonis-lucid": "https://registry.npmjs.org/adonis-lucid/-/adonis-lucid-3.0.5.tgz",
+    "adonis-middleware": "^1.0.8",
+    "adonis-validation-provider": "^3.0.4",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "express-session": "^1.14.2",
+    "nedb": "^1.8.0",
+    "passport": "^0.3.2",
+    "sqlite3": "^3.1.8",
+    "youch": "^1.0.1"
+  }
+}

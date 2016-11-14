@@ -85,19 +85,13 @@ class TarsasController {
    */
   * show (request, response) {
     const tarsasId = request.param('id')
-    const recipe = yield Recipe.find(recipeId)
+    const tarsas = yield Tarsas.find(tarsasId)
 
-    if (recipe) {
-      yield recipe.related('category').load()
-      yield recipe.related('created_by').load()
+    if (tarsas) {
 
-      const fileName = `/images/${recipe.id}.jpg`
-      const imageExists = yield fileExists(`${Helpers.publicPath()}/${fileName}`)
-      const recipeImage = imageExists ? fileName : false
-
-      yield response.sendView('recipe', { recipe: recipe.toJSON(), recipeImage })
+      yield response.sendView('tarsas', { tarsas: tarsas.toJSON() })
     } else {
-      response.notFound('Recipe not found.')
+      response.notFound('Tarsas not found.')
     }
   }
 
@@ -105,49 +99,44 @@ class TarsasController {
    *
    */
   * edit (request, response) {
-    const recipeId = request.param('id')
-    const recipe = yield Recipe.find(recipeId)
+    const tarsasId = request.param('id')
+    const tarsas = yield Tarsas.find(tarsasId)
 
 
-    if (!recipe || recipe.deleted == true) {
-      yield response.notFound('Recipe not found.')
+    if (!tarsas || tarsas.deleted == true) {
+      yield response.notFound('Tarsas not found.')
       return;
     }
 
-    if (recipe.created_by_id !== request.currentUser.id) {
+    if (request.currentUser.isAdmin) {
       response.unauthorized('Access denied.')
     }
 
-    yield recipe.related('category').load()
-    yield recipe.related('created_by').load()
 
-    const categories = yield Category.all()
-
-    yield response.sendView('recipe_edit', { categories: categories.toJSON(), recipe: recipe.toJSON() })
+    yield response.sendView('tarsas_edit', {tarsas: tarsas.toJSON() })
   }
 
   /**
    *
    */
   * doEdit (request, response) {
-    const recipeId = request.param('id')
-    const recipe = yield Recipe.find(recipeId)
+    const tarsasId = request.param('id')
+    const tarsas = yield Tarsas.find(tarsasId)
 
-    if (!recipe || recipe.deleted) {
-      yield response.notFound('Recipe not found.')
+    if (!tarsas || tarsas.deleted) {
+      yield response.notFound('Tarsas not found.')
       return;
     }
 
-    if (recipe.created_by_id !== request.currentUser.id) {
+    if (request.currentUser.isAdmin) {
       yield response.unauthorized('Access denied.')
       return;
     }
 
-    const recipeData = request.all()
-    const validation = yield Validator.validateAll(recipeData, {
+    const tarsaseData = request.all()
+    const validation = yield Validator.validateAll(tarsaseData, {
       name: 'required',
-      description: 'required',
-      ingredients: 'required'
+      description: 'required'
     })
 
     if (validation.fails()) {
@@ -155,42 +144,20 @@ class TarsasController {
         .with({ errors: validation.messages() })
         .flash()
 
-      yield response.route('recipe_edit', {id: recipe.id})
+      yield response.route('tarsas_edit', {id: tarsas.id})
       return;
     }
-    const category = yield Category.find(recipeData.category)
 
-    if (!category) {
-      yield request
-        .with({ errors: [{ message: 'category doesn\'t exist' }] })
-        .flash()
 
-      yield response.route('recipe_edit', {id: recipe.id})
-      return;
-    }
-    const recipeImage = request.file('image', { maxSize: '1mb', allowedExtensions: ['jpg', 'JPG'] })
 
-    if (recipeImage.clientSize() > 0) {
-      yield recipeImage.move(Helpers.publicPath() + '/images', `${recipe.id}.jpg`)
 
-      if (!recipeImage.moved()) {
-        yield request
-          .with({ errors: [{ message: recipeImage.errors() }] })
-          .flash()
+    tarsas.name = tarsasData.name
+    tarsas.description = tarsasData.description
 
-        response.route('recipe_edit', {id: recipe.id})
-        return
-      }
-    }
 
-    recipe.name = recipeData.name
-    recipe.description = recipeData.description
-    recipe.ingredients = recipeData.ingredients
-    recipe.category_id = recipeData.category
+    yield tarsas.update()
 
-    yield recipe.update()
-
-    response.route('recipe_page', { id: recipe.id })
+    response.route('tarsas_page', { id: tarsas.id })
 
   }
 
@@ -198,20 +165,20 @@ class TarsasController {
    *
    */
   * doDelete (request, response) {
-    const recipeId = request.param('id')
-    const recipe = yield Recipe.find(recipeId)
+    const tarsasId = request.param('id')
+    const tarsas = yield Tarsas.find(tarsasId)
 
-    if (recipe) {
-      if (recipe.created_by_id !== request.currentUser.id) {
+    if (tarsas) {
+      if ( request.currentUser.isAdmin) {
         response.unauthorized('Access denied.')
       }
 
-      recipe.deleted = true
-      yield recipe.update()
+      tarsas.deleted = true
+      yield tarsas.update()
 
       response.route('main')
     } else {
-      response.notFound('Recipe not found.')
+      response.notFound('Tarsas not found.')
     }
   }
 }
@@ -225,4 +192,4 @@ function fileExists(fileName) {
   })
 }
 
-module.exports = RecipeController
+module.exports = TarsasController

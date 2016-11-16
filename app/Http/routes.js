@@ -26,7 +26,14 @@ Route.get('/logout', 'UserController.doLogout').as('do_logout').middleware('auth
 Route.post('/profile/edit', 'UserController.doProfileEdit').as('do_profile_edit').middleware('auth')
 Route.post('/profile/edit_password', 'UserController.doPasswordEdit').as('do_password_edit').middleware('auth')
 
-Route.get('/', 'TarsasController.main').as('main')
+Route.get('/', 'RecipeController.main').as('main')
+Route.get('/recipe/create', 'RecipeController.create').as('recipe_create').middleware('auth')
+Route.post('/recipe/create', 'RecipeController.doCreate').as('do_recipe_create').middleware('auth')
+Route.get('/recipe/:id', 'RecipeController.show').as('recipe_page')
+Route.get('/recipe/:id/edit', 'RecipeController.edit').as('recipe_edit')
+Route.post('/recipe/:id/edit', 'RecipeController.doEdit').as('do_recipe_edit')
+Route.get('/recipe/:id/delete', 'RecipeController.doDelete').as('recipe_delete')
+
 Route.get('/tarsas/create', 'TarsasController.create').as('tarsas_create').middleware('auth')
 Route.post('/tarsas/create', 'TarsasController.doCreate').as('do_tarsas_create').middleware('auth')
 Route.get('/tarsas/:id', 'TarsasController.show').as('tarsas_page')

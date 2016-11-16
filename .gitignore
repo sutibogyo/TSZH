@@ -24,6 +24,3 @@ lib-cov
 
 # Mac Only
 .DS_Store
-
-
-/.idea

@@ -3,8 +3,8 @@
 const Lucid = use('Lucid')
 
 class Rendezveny extends Lucid {
-  apiTokens () {
-    return this.hasMany('App/Model/Token')
+  static scopeActive (builder) {
+    builder.where('deleted', 0)
   }
 
 }

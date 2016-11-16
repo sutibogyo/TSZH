@@ -48,11 +48,10 @@ class RendezvenyController {
    *
    */
   * doCreate (request, response) {
-    const tarsasData = request.all()
-    const validation = yield Validator.validateAll(tarsasData, {
+    const rendezvenyData = request.all()
+    const validation = yield Validator.validateAll(rendezvenyData, {
       name: 'required',
-      description: 'required',
-      ingredients: 'required'
+      description: 'required'
     })
 
     if (validation.fails()) {
@@ -61,37 +60,37 @@ class RendezvenyController {
         .andWith({ errors: validation.messages() })
         .flash()
 
-      response.route('tarsas_create')
+      response.route('rendezveny_create')
       return;
     }
 
-    response.route('tarsas_create')
+    response.route('rendezveny_create')
     return;
 
 
 
-    const tarsas = new Tarsas()
-    tarsas.name = tarsasData.name
-    tarsas.description = tarsasData.description
+    const rendezveny = new Rendezveny()
+    rendezveny.name = rendezvenyData.name
+    rendezveny.description = rendezvenyData.description
 
     // TODO: these lines should be executed atomically
-    yield tarsas.save()
+    yield rendezveny.save()
 
-    response.route('tarsas_page', { id: tarsas.id })
+    response.route('rendezveny_page', { id: rendezveny.id })
   }
 
   /**
    *
    */
   * show (request, response) {
-    const tarsasId = request.param('id')
-    const tarsas = yield Tarsas.find(tarsasId)
+    const rendezvenyId = request.param('id')
+    const rendezveny = yield Rendezveny.find(rendezvenyId)
 
-    if (tarsas) {
+    if (rendezveny) {
 
-      yield response.sendView('tarsas', { tarsas: tarsas.toJSON() })
+      yield response.sendView('rendezveny', { rendezveny: rendezveny.toJSON() })
     } else {
-      response.notFound('Tarsas not found.')
+      response.notFound('Rendezveny not found.')
     }
   }
 
@@ -99,12 +98,12 @@ class RendezvenyController {
    *
    */
   * edit (request, response) {
-    const tarsasId = request.param('id')
-    const tarsas = yield Tarsas.find(tarsasId)
+    const rendezvenyId = request.param('id')
+    const rendezveny = yield Rendezveny.find(rendezvenyId)
 
 
-    if (!tarsas || tarsas.deleted == true) {
-      yield response.notFound('Tarsas not found.')
+    if (!rendezveny || rendezveny.deleted == true) {
+      yield response.notFound('Rendezveny not found.')
       return;
     }
 
@@ -113,18 +112,18 @@ class RendezvenyController {
     }
 
 
-    yield response.sendView('tarsas_edit', {tarsas: tarsas.toJSON() })
+    yield response.sendView('rendezveny_edit', {rendezveny: rendezveny.toJSON() })
   }
 
   /**
    *
    */
   * doEdit (request, response) {
-    const tarsasId = request.param('id')
-    const tarsas = yield Tarsas.find(tarsasId)
+    const rendezvenyId = request.param('id')
+    const rendezveny = yield Rendezveny.find(rendezvenyId)
 
-    if (!tarsas || tarsas.deleted) {
-      yield response.notFound('Tarsas not found.')
+    if (!rendezveny || rendezveny.deleted) {
+      yield response.notFound('Rendezveny not found.')
       return;
     }
 
@@ -133,8 +132,8 @@ class RendezvenyController {
       return;
     }
 
-    const tarsaseData = request.all()
-    const validation = yield Validator.validateAll(tarsaseData, {
+    const rendezvenyData = request.all()
+    const validation = yield Validator.validateAll(rendezvenyData, {
       name: 'required',
       description: 'required'
     })
@@ -144,20 +143,20 @@ class RendezvenyController {
         .with({ errors: validation.messages() })
         .flash()
 
-      yield response.route('tarsas_edit', {id: tarsas.id})
+      yield response.route('rendezveny_edit', {id: rendezveny.id})
       return;
     }
 
 
 
 
-    tarsas.name = tarsasData.name
-    tarsas.description = tarsasData.description
+    rendezveny.name = rendezvenyData.name
+    rendezveny.description = rendezvenyData.description
 
 
-    yield tarsas.update()
+    yield rendezveny.update()
 
-    response.route('tarsas_page', { id: tarsas.id })
+    response.route('rendezveny_page', { id: rendezveny.id })
 
   }
 
@@ -165,20 +164,20 @@ class RendezvenyController {
    *
    */
   * doDelete (request, response) {
-    const tarsasId = request.param('id')
-    const tarsas = yield Tarsas.find(tarsasId)
+    const rendezvenyId = request.param('id')
+    const rendezveny = yield Rendezveny.find(rendezvenyId)
 
-    if (tarsas) {
+    if (rendezveny) {
       if ( request.currentUser.isAdmin) {
         response.unauthorized('Access denied.')
       }
 
-      tarsas.deleted = true
-      yield tarsas.update()
+      rendezveny.deleted = true
+      yield rendezveny.update()
 
       response.route('main')
     } else {
-      response.notFound('Tarsas not found.')
+      response.notFound('Rendezveny not found.')
     }
   }
 }
@@ -192,4 +191,4 @@ function fileExists(fileName) {
   })
 }
 
-module.exports = TarsasController
+module.exports = RendezvenyController

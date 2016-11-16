@@ -1,41 +1,36 @@
 {
-  "name": "tszh",
-  "version": "1.0.0",
-  "description": "Tarsas-, Szerepjatekos Hetvege hivatalos oldala.",
+  "name": "adonis-app",
+  "version": "3.0.0",
   "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x \"node\" server.js",
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sutibogyo/TSZH.git"
-  },
-  "author": "Német Helga",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sutibogyo/TSZH/issues"
-  },
-  "homepage": "https://github.com/sutibogyo/TSZH#readme",
-  "autoload":"true",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "private": true,
   "dependencies": {
-    "adonis-ace": "^3.0.4",
-    "adonis-auth": "^1.0.4",
-    "adonis-cli": "^2.1.4",
-    "adonis-commands": "^2.1.2",
-    "adonis-fold": "^3.0.3",
-    "adonis-framework": "^3.0.5",
-    "adonis-lucid": "https://registry.npmjs.org/adonis-lucid/-/adonis-lucid-3.0.5.tgz",
-    "adonis-middleware": "^1.0.8",
-    "adonis-validation-provider": "^3.0.4",
-    "body-parser": "^1.15.2",
-    "connect-flash": "^0.1.1",
-    "express-session": "^1.14.2",
-    "nedb": "^1.8.0",
-    "passport": "^0.3.2",
-    "sqlite3": "^3.1.8",
+    "adonis-ace": "^3.0.1",
+    "adonis-auth": "^1.0.0",
+    "adonis-commands": "^2.1.0",
+    "adonis-fold": "^3.0.2",
+    "adonis-framework": "^3.0.1",
+    "adonis-lucid": "^3.0.3",
+    "adonis-middleware": "^1.0.7",
+    "adonis-validation-provider": "^3.0.3",
+    "sqlite3": "^3.1.4",
     "youch": "^1.0.1"
+  },
+  "autoload": {
+    "App": "./app"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  },
+  "standard": {
+    "globals": [
+      "use"
+    ]
   }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}{% endblock %} - Receptkönyv</title>
+    <title>{% block title %}{% endblock %} - Társas-, szerepjátékos hétvége</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-G3G7OsJCbOk1USkOY4RfeX1z27YaWrZ1YuaQ5tbuawed9IoreRDpWpTkZLXQfPm3" crossorigin="anonymous">
     <link href="/style.css" rel="stylesheet">
@@ -21,13 +21,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ 'main' | route }}">Receptkönyv</a>
+          <a class="navbar-brand" href="{{ 'main' | route }}">Társas-, szerepjátékos hétvége</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{{ 'recipe_list' | route }}">Receptek böngészése</a></li>
+            <li><a href="{{ 'tarsas_list' | route }}">Társasjátékok böngészése</a></li>
+			<li><a href="{{ 'tarsas_list' | route }}">Társasjátékok böngészése</a></li>
             {% if currentUser %}
-            <li><a href="{{ 'recipe_create' | route }}">Recept beküldése</a></li>
+            <li><a href="{{ 'tarsas_create' | route }}">Társas beküldése</a></li>
+			<li><a href="{{ 'tarsas_create' | route }}">Társas beküldése</a></li>
             {% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">

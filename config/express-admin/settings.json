@@ -611,6 +611,158 @@
             "readonly": false
         }
     },
+    "tarsas": {
+      "slug": "tarsas",
+      "table": {
+        "name": "tarsas",
+        "pk": "id",
+        "verbose": "tarsas"
+      },
+      "columns": [
+        {
+          "name": "id",
+          "verbose": "id",
+          "control": {
+            "text": true
+          },
+          "type": "integer",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        },
+        {
+          "name": "name",
+          "verbose": "name",
+          "control": {
+            "text": true
+          },
+          "type": "varchar(60)",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        },
+        {
+          "name": "description",
+          "verbose": "description",
+          "control": {
+            "text": true
+          },
+          "type": "text",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        }
+      ],
+      "mainview": {
+        "show": true
+      },
+      "listview": {
+        "order": {},
+        "page": 25
+      },
+      "editview": {
+        "readonly": false
+      }
+    },
+    "rendezveny": {
+      "slug": "rendezveny",
+      "table": {
+        "name": "rendezveny",
+        "pk": "id",
+        "verbose": "rendezveny"
+      },
+      "columns": [
+        {
+          "name": "id",
+          "verbose": "id",
+          "control": {
+            "text": true
+          },
+          "type": "integer",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        },
+        {
+          "name": "name",
+          "verbose": "name",
+          "control": {
+            "text": true
+          },
+          "type": "varchar(60)",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        },
+        {
+          "name": "date",
+          "verbose": "date",
+          "control": {
+            "text": true
+          },
+          "type": "date",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        },
+        {
+          "name": "description",
+          "verbose": "description",
+          "control": {
+            "text": true
+          },
+          "type": "text",
+          "allowNull": false,
+          "defaultValue": null,
+          "listview": {
+            "show": true
+          },
+          "editview": {
+            "show": true
+          }
+        }
+      ],
+      "mainview": {
+        "show": true
+      },
+      "listview": {
+        "order": {},
+        "page": 25
+      },
+      "editview": {
+        "readonly": false
+      }
+    },
     "sqlite_sequence": {
         "slug": "sqlite_sequence",
         "table": {

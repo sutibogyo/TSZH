@@ -51,8 +51,7 @@ class TarsasController {
     const tarsasData = request.all()
     const validation = yield Validator.validateAll(tarsasData, {
       name: 'required',
-      description: 'required',
-      ingredients: 'required'
+      description: 'required'
     })
 
     if (validation.fails()) {
@@ -64,11 +63,6 @@ class TarsasController {
       response.route('tarsas_create')
       return;
     }
-
-      response.route('tarsas_create')
-      return;
-
-
 
     const tarsas = new Tarsas()
     tarsas.name = tarsasData.name
@@ -86,7 +80,7 @@ class TarsasController {
   * show (request, response) {
     const tarsasId = request.param('id')
     const tarsas = yield Tarsas.find(tarsasId)
-
+    console.log("tarsas", tarsas)
     if (tarsas) {
 
       yield response.sendView('tarsas', { tarsas: tarsas.toJSON() })
@@ -108,7 +102,7 @@ class TarsasController {
       return;
     }
 
-    if (request.currentUser.isAdmin) {
+    if (!request.currentUser.isAdmin) {
       response.unauthorized('Access denied.')
     }
 
@@ -128,7 +122,7 @@ class TarsasController {
       return;
     }
 
-    if (request.currentUser.isAdmin) {
+    if (!request.currentUser.isAdmin) {
       yield response.unauthorized('Access denied.')
       return;
     }
@@ -169,7 +163,7 @@ class TarsasController {
     const tarsas = yield Tarsas.find(tarsasId)
 
     if (tarsas) {
-      if ( request.currentUser.isAdmin) {
+      if ( !request.currentUser.isAdmin) {
         response.unauthorized('Access denied.')
       }
 

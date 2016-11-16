@@ -1,1 +1,13 @@
 {% extends 'master' %}
+
+{% block title %}{{ rendezveny.name }}{% endblock %}
+{% block content %}
+  <h1>{{ rendezveny.name }}</h1>
+  <p><a href="{{ 'tarsas_list' | route }}">asdfg</a> · beküldte</p>
+  <h2>Leírás</h2>
+  <p>{{ rendezveny.description }}</p>
+  <div>
+    <a class="btn btn-primary" href="{{ 'rendezveny_edit' | route({id: rendezveny.id}) }}">Módosítás</a>
+    <a class="btn btn-danger" href="{{ 'rendezveny_delete' | route({id: rendezveny.id}) }}">Törlés</a>
+  </div>
+{% endblock %}

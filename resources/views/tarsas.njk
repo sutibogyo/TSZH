@@ -1,14 +1,18 @@
 {% extends 'master' %}
 
+
 {% block title %}{{ tarsas.name }}{% endblock %}
 {% block content %}
+
   <h1>{{ tarsas.name }}</h1>
-  <p><a href="{{ 'tarsas_list' | route }}">asdfg</a> · beküldte</p>
+
+
   <h2>Leírás</h2>
   <p>{{ tarsas.description }}</p>
   <div>
     <a class="btn btn-primary" href="{{ 'tarsas_edit' | route({id: tarsas.id}) }}">Módosítás</a>
     <a class="btn btn-danger" href="{{ 'tarsas_delete' | route({id: tarsas.id}) }}">Törlés</a>
   </div>
+
 {% endblock %}
 

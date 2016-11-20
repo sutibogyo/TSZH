@@ -1,0 +1,29 @@
+{% extends 'master' %}
+
+
+{% block title %}{{ event.name }}{% endblock %}
+{% block content %}
+  <h1>{{ event.name }}</h1>
+  <h2>Leírás</h2>
+  <p>{{ event.description }}</p>
+  <h2>Dátum</h2>
+  <p>{{ event.date }}</p>
+  <div>
+    <form action="{{ 'do_visit_create' | route }}" method="POST" enctype="multipart/form-data">
+      {{ csrfField }}
+      <input type="hidden" value="{{event.id}}" name="eventId">
+      <button class="btn btn-primary" type="submit">Jelentkezes</button>
+    </form>
+    {% if currentUser.isAdmin==='TRUE'  %}
+    <a class="btn btn-primary" href="{{ 'event_edit' | route({id: event.id}) }}">Módosítás</a>
+    <a class="btn btn-danger" href="{{ 'event_delete' | route({id: event.id}) }}">Törlés</a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+<!--<form action="...">-->
+  <!--ide jonnek bele ay adatai-->
+  <!--es kell egz hidden input meyo ami tartalmayya ay idüjat-->
+  <!--<input type="hidden" name="rendezvenyId" value="RENDEZVENY_ID">-->
+  <!--<button type="submit">Jelentkezes</button>-->
+<!--</form>-->

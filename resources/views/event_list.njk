@@ -1,0 +1,30 @@
+{% extends 'master' %}
+
+
+{% block title %}{{ event.name }}{% endblock %}
+{% block content %}
+{% for event in events%}
+<h1>{{ event.name }}</h1>
+<h2>Leírás</h2>
+<p>{{ event.description }}</p>
+<h2>Dátum</h2>
+<p>{{ event.date }}</p>
+
+
+<div>
+  <a class="btn btn-info" href="{{ 'event_page' | route({id: event.id}) }}">Megtekint</a>
+  {% if currentUser.isAdmin==='TRUE'  %}
+  <a class="btn btn-primary" href="{{ 'event_edit' | route({id: event.id}) }}">Módosítás</a>
+  <a class="btn btn-danger" href="{{ 'event_delete' | route({id: event.id}) }}">Törlés</a>
+  {% endif %}
+</div>
+
+{% endfor %}
+{% endblock %}
+
+<!--<form action="...">-->
+<!--ide jonnek bele ay adatai-->
+<!--es kell egz hidden input meyo ami tartalmayya ay idüjat-->
+<!--<input type="hidden" name="rendezvenyId" value="RENDEZVENY_ID">-->
+<!--<button type="submit">Jelentkezes</button>-->
+<!--</form>-->

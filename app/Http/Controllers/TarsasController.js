@@ -21,9 +21,7 @@ class TarsasController {
     }
 
     yield response.sendView('main', {
-      tarsasok: tarsasok
-        .filter(tarsas => tarsasok.latestTarsasok.length > 0)
-        .toJSON()
+      tarsasok: tarsasok.toJSON()
     })
   }
 
@@ -80,13 +78,20 @@ class TarsasController {
   * show (request, response) {
     const tarsasId = request.param('id')
     const tarsas = yield Tarsas.find(tarsasId)
-    console.log("tarsas", tarsas)
     if (tarsas) {
 
       yield response.sendView('tarsas', { tarsas: tarsas.toJSON() })
     } else {
       response.notFound('Tarsas not found.')
     }
+  }
+
+  * list (request, response) {
+
+    const tarsasok = yield Tarsas.all();
+    yield response.sendView('tarsas_list', {
+      tarsasok: tarsasok.toJSON()
+    })
   }
 
   /**

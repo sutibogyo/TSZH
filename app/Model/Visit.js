@@ -2,11 +2,11 @@
 
 const Lucid = use('Lucid')
 
-class Rendezveny extends Lucid {
+class Visit extends Lucid {
   static scopeActive (builder) {
     builder.where('deleted', 0)
   }
 
 }
 
-module.exports = Rendezveny
+module.exports = Visit

@@ -1,221 +1,58 @@
-# Receptgyűjtemény (alkfejl)
+# Társas-, Szerepjátékos Hétvége oldala
 
-## Telepítés
-```
-# Linux:
-npm install
-./ace migration:run
+##Funkcionális követelmények összegyűjtése
 
-# Windows:
-npm install
-node ace migration:run
-copy .env.example .env
-```
+Az admin jogosultságú felhasználó tudjon az oldalon új eseményt létrehozni.<br />
+Az admin jogosultságú felhasználó tudjon az oldalon meglévő eseményt szerkeszteni.<br />
+A felhasználók tudják jelezni a részvételi szándékukat.<br />
+Azoldal látógatói(nem belépett felhasználók) meg tudják nézni az aktuális társasjáték és rendezvény listát listát.<br />
 
-## Használat
-```
-npm run dev
-```
+##NEM FUNKCIONÁLIS KÖVETELMÉNYEK
+Felhasználóbarát, ergonomikus elrendezés és kinézet.<br />
+Gyors működés.<br />
+Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.<br />
 
-## Terv
+##Szerepkörök, használati esetek, folyamatok meghatározása
+Admin: Van joga rendezvényt létrehozni, módosítani és törölni és a társasjátékok listába is vehet fel elemeket.<br />
+Felhasználó : Van joga jelezni részvételi szándékát a rendezvényre.<br />
+Látogató : Megtekintheti a rendezvények és a társasjátékok listáját.<br />
 
-Modell:
+##Oldalfunkciók
+Rendezvény létrehozása, törlése, módosítása<br />
+Részvételi szándék jelzése<br />
+Társasjáték lista lekérdezése.<br />
 
-- receptek kategória szerint
-- kategóriák fixek (db-ben)
-- recept - ingredients (1-N?)
-- user - recept
-- kedvenc (N-N) bónusz
+##Oldalvázlatok készítése
+![Sequence diagram](doc/img/Login.jpg)
+![Sequence diagram](doc/img/TarsasjatekLista.jpg)
+![Sequence diagram](doc/img/RendezvenyLista.jpg)
 
-Vendég:
+##Oldaltérkép
+![Sequence diagram](doc/img/map.PNG)
 
-- nyitóoldal (menü)
-  - receptajánlók kategóriánként (top 3)
-- böngésző: kategória + lapozható lista
-- keresés: szűrőmezőkkel, találati lista
-- recept megjelenítés
-
-Felhasználó:
-
-- új recept
-  - 10dkg marha oldalas
-  - 1kávéskanál
-  - liszt ízlés szerint
-- módosítás
-- törlés/inaktiválás
-- kedvenc bónusz
-- profil
-  - saját receptek
-  - kedvencek bónusz
-  - user adatok
+##Adatbázis tervezése
+![Sequence diagram](doc/img/database.png)
 
 
-
-## Követelményspecifikáció
-
-### Funkcionális követelmények
-
-- Vendégként a főoldalon szeretnék kiemelt recepteket látni kategóriánként.
-- Vendégként szeretnék a receptek között szabadon böngészni.
-- Vendégként szeretnék egy receptleírást megtekinteni.
-- Vendégként szeretnék receptet keresni.
-- Vendégként szeretnék tudni regisztrálni az oldalra.
-- Felhasználóként szeretnék tudni bejelentkezni az oldalra.
-- Felhasználóként szeretném tudni a profiladataimat szerkeszteni.
-- Felhasználóként szeretnék új receptet beküldeni.
-- Felhasználóként szeretném a saját recpetjeimet módosítani vagy törölni.
-
-### Nem funkcionális követelmények
-
-- Felhasználóbarát, ergonomikus elrendezés és kinézet.
-- Gyors működés.
-- Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
-
-## Szakterületi fogalomjegyzék
-
-- Recept: étel elkészítéséhez szükséges hozzávalók és az elkészítés lépéseit tartalmazó leírás.
-
-## Használatieset-Modell
-
-### Szerepkörök
-
-- vendég: receptek keresését, böngészését és megtekintését végezheti.
-- felhasználó: a vendég szerepkörén túl a saját receptjeinek kezelésére (új, módosít, törlés) képes.
-
-### Használatieset-diagram
-
-```
-#direction: right
-[<actor>vendég] - [<usecase>főoldal]
-[<actor>vendég] - [<usecase>receptek böngészése]
-[<actor>vendég] - [<usecase>recept megtekintése]
-[<actor>vendég] - [<usecase>keresés]
-[<actor>vendég] - [<usecase>regisztrálás]
-[<actor>felhasználó] --> [<actor>vendég]
-[<actor>felhasználó] - [<usecase>bejelentkezés]
-[<actor>felhasználó] - [<usecase>kijelentkezés]
-[<actor>felhasználó] - [<usecase>új recept beküldése]
-[<actor>felhasználó] - [<usecase>saját receptek kezelése]
-[<actor>felhasználó] - [<usecase>profiladatok megtekintése]
-[<usecase>profiladatok megtekintése] <<extends>><-- [<usecase>profiladatok szerkesztése]
-```
-
-![Használatieset-diagram](docs/use_case.png)
-
-### Folyamatok meghatározása
-
-UML Activity Diagram
-
-- felhasználó
-    + új recept felvételének folyamata
-
-        ```
-        #direction: right
-        [<start>start] -> [<state>saját receptek]
-        [<state>saját receptek] -> [<state>új recept]
-        [<state>új recept] -> [<state>előnézet]
-        [<state>előnézet] -> [<choice>megfelelő?]
-        [<choice>megfelelő?] nem-> [<state>új recept]
-        [<choice>megfelelő?] igen-> [<state>recept megtekintése]
-        [<state>recept megtekintése] -> [<end>end]
-        ```
-    
-        ![Új recept folyamata](docs/uj_recept_uml.png)
-
-    + bejelentkezés folyamata
-
-        ```
-        #direction: right
-        [<start>start] -> [<state>főoldal]
-        [<state>főoldal] -> [<state>bejelentkezés]
-        [<state>bejelentkezés] -> [<choice>sikeres?]
-        [<choice>sikeres?] nem-> [<state>bejelentkezés]
-        [<choice>sikeres?] igen-> [<state>saját receptek]
-        [<state>saját receptek] -> [<end>end]
-        ```
-
-        ![Bejelentkezés](docs/bejelentkezes_uml.png)
-
-- vendég
-    + keresés egy receptre
-
-## Végpontok
-
-- `GET /`: főoldal
-- `GET /login`: bejelentkező oldal
-- `POST /login`: bejelentkezési adatok felküldése
-- `GET /profile`: profiladatok
-- `GET /recipes`: receptlista
-- `GET /recipes/:id`: recept megtekintése
-- `GET /recipes/create`: új recept felvitele, űrlap megjelenítése
-- `POST /recipes/create`: új recept felvitele, adatok küldése
-
-## Oldalvázlatok (mockup)
-
-![Főoldal](docs/fooldal.png)
-
-![Böngészés](docs/bongeszes.png)
-
-![Recept megtekintése](docs/recept.png)
-
-![Új recept](docs/uj_recept.png)
+##Használati eset diagram
+![Sequence diagram](doc/img/folyamat2.png)
+![Sequence diagram](doc/img/modosit.png)
 
 
-## Sitemap
+##Végpontok
+GET /: főoldal<br />
+GET /login: bejelentkező oldal<br />
+POST /login: bejelentkezési adatok felküldése<br />
+GET /tarsas/list: társasjátéklista oldal<br />
+GET /tarsas/new: új társasjáték felvitele<br />
+POST /tarsas/new: új társasjáték felvitele, adatok küldése<br />
+GET /rendezveny/list: rendezvénylista oldal<br />
+GET /rendezveny/new: új rendezvény felvitele<br />
+POST /rendezveny/new: új rendezvény felvitele, adatok küldése<br />
+POST /rendezveny/going: részvételi szándék elküldése<br />
 
-Publikus:
-
-- Főoldal
-- Receptek böngészése
-    + Recept megtekintése
-- Belépés
-- Regisztráció
-
-Felhasználó
-
-- Kilépés
-- Profiladatok
-    + Profiladatok szerkesztése
-- Új recept felvitele
-
-## Adatmodell
-
-```
-[User|
-  felhasználónév
-  email
-  jelszó
-]
-
-[Recipe|
-  név
-  hozzávalók
-  leírás
-]
-
-[Category|
-  név
-]
-
-[User] 1 - 0..* [Recipe]
-[Category] 1 - 0..* [Recipe]
-```
-
-![Adatmodell](docs/data_model.png)
-
-## Állapotdiagramok
-
-Egyelőre nincs a feladatban.
-
-Ötlet: új recept, előnézet vagy jóváhagyási fázis
-
-## Designtervek
-
-Kihagyható, rögtön Bootstrapben csinálni.
-
-- [LayoutIt](http://www.layoutit.com/build)
-- [Bootswatch](http://bootswatch.com/)
+##Állapot diagam
+![UseCaseDiagram](doc/img/UseCaseDiagram.png)
 
 
-
-
+Fejlesztő környezet:Visual Studio Code

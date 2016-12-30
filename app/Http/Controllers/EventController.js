@@ -180,6 +180,26 @@ class EventController {
       response.notFound('Event not found.')
     }
   }
+
+  * ajaxDelete(request, response) {
+    const id = request.param('id');
+    const event = yield Event.find(id);
+
+    if (event) {
+      if (!request.currentUser.isAdmin) {
+        response.unauthorized('Access denied.')
+        return
+      }
+
+      yield event.delete()
+      response.ok({
+        success: true
+      })
+      return
+    }
+
+    response.notFound('No event')
+  }
 }
 
 function fileExists(fileName) {

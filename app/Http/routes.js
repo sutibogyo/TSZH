@@ -51,3 +51,9 @@ Route.post('/event/:id/edit', 'EventController.doEdit').as('do_event_edit')
 Route.get('/event/:id/delete', 'EventController.doDelete').as('event_delete')
 
 Route.post('/visit', 'VisitController.doCreate').as('do_visit_create')
+
+Route.group('ajax', function () {
+  Route.delete('/tarsas/:id/delete', 'TarsasController.ajaxDelete').middleware('auth')
+  Route.delete('/event/:id/delete', 'EventController.ajaxDelete').middleware('auth')
+  Route.post('/login', 'UserController.ajaxLogin')
+}).prefix('/ajax')

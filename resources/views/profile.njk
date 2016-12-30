@@ -3,9 +3,7 @@
 {% block title %}Saját profil megtekintése{% endblock %}
 {% block content %}
   <h1>Saját profil megtekintése</h1>
-  <div>
-    <a class="btn btn-info" href="{{ 'recipe_list' | route }}?createdBy={{ currentUser.id }}">Saját receptek megtekintése</a>
-  </div>
+
   {% if old('errors') %}
   <br>
   <div class="alert alert-danger" role="alert">Hiba történt a feldolgozás közben:

@@ -50,9 +50,9 @@ class UserController {
 
       response.route('register')
 	  return;
-	  
+
     }
-	
+
     const user = new User()
     user.username = userData.username
     user.email = userData.email
@@ -62,7 +62,7 @@ class UserController {
     yield user.save()
 
     yield request.auth.login(user)
-    
+
     response.route('register')
   }
 
@@ -121,11 +121,11 @@ class UserController {
       yield request
         .with({ errors: validation.messages() })
         .flash()
-		
+
      response.route('profile')
 	 return;
     }
-	
+
     const user = request.currentUser
     const isSame = yield Hash.verify(userData.old_password, user.password)
 
@@ -133,7 +133,7 @@ class UserController {
       yield request
         .with({ errors: [{ message: 'Bad actual password.' }] })
         .flash()
-		
+
       response.route('profile')
 	  return
     }
@@ -145,7 +145,7 @@ class UserController {
     yield request
       .with({ success: 'Password changed successfully.' })
       .flash()
-	
+
     response.route('profile')
   }
 
@@ -175,7 +175,7 @@ class UserController {
       response.route('profile')
 	  return;
     }
-	
+
     user.username = userData.username
     user.email = userData.email
     user.nickname = userData.nickname
@@ -185,8 +185,24 @@ class UserController {
     yield request
       .with({ success: 'Profile changed successfully.' })
       .flash()
-	
+
     response.route('profile')
+  }
+
+  * ajaxLogin(request, response) {
+    const username = request.input('username')
+    const password = request.input('password')
+
+    try {
+      const login = yield request.auth.attempt(username, password)
+      if (login) {
+        response.send({ success: true })
+        return
+      }
+    }
+    catch (err) {
+      response.send({ success: false })
+    }
   }
 }
 

@@ -180,6 +180,26 @@ class TarsasController {
       response.notFound('Tarsas not found.')
     }
   }
+
+  * ajaxDelete(request, response) {
+    const id = request.param('id');
+    const tarsas = yield Tarsas.find(id);
+
+    if (tarsas) {
+      if (!request.currentUser.isAdmin) {
+        response.unauthorized('Access denied.')
+        return
+      }
+
+      yield tarsas.delete()
+      response.ok({
+        success: true
+      })
+      return
+    }
+
+    response.notFound('No BoardGame')
+  }
 }
 
 function fileExists(fileName) {

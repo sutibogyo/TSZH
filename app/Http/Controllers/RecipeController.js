@@ -76,7 +76,7 @@ class RecipeController {
       response.route('recipe_create')
 	  return;
     }
-	
+
     const recipeImage = request.file('image', { maxSize: '1mb', allowedExtensions: ['jpg', 'JPG'] })
 
     if (recipeImage.clientSize() > 0 && !recipeImage.validate()) {
@@ -131,12 +131,12 @@ class RecipeController {
     const recipeId = request.param('id')
     const recipe = yield Recipe.find(recipeId)
 
-	
+
     if (!recipe || recipe.deleted == true) {
 	  yield response.notFound('Recipe not found.')
 	  return;
-    } 
-	
+    }
+
     if (recipe.created_by_id !== request.currentUser.id) {
       response.unauthorized('Access denied.')
     }
@@ -159,13 +159,13 @@ class RecipeController {
     if (!recipe || recipe.deleted) {
 	  yield response.notFound('Recipe not found.')
 	  return;
-    } 
-	
+    }
+
     if (recipe.created_by_id !== request.currentUser.id) {
       yield response.unauthorized('Access denied.')
 	  return;
     }
-	  
+
     const recipeData = request.all()
     const validation = yield Validator.validateAll(recipeData, {
       name: 'required',
@@ -180,7 +180,7 @@ class RecipeController {
 
       yield response.route('recipe_edit', {id: recipe.id})
 	  return;
-    } 
+    }
       const category = yield Category.find(recipeData.category)
 
     if (!category) {
@@ -190,7 +190,7 @@ class RecipeController {
 
       yield response.route('recipe_edit', {id: recipe.id})
 	  return;
-    } 
+    }
     const recipeImage = request.file('image', { maxSize: '1mb', allowedExtensions: ['jpg', 'JPG'] })
 
     if (recipeImage.clientSize() > 0) {
@@ -214,7 +214,7 @@ class RecipeController {
     yield recipe.update()
 
     response.route('recipe_page', { id: recipe.id })
-    
+
   }
 
   /**
@@ -237,6 +237,8 @@ class RecipeController {
       response.notFound('Recipe not found.')
     }
   }
+
+
 }
 
 function fileExists(fileName) {

@@ -3,6 +3,7 @@
 
 {% block title %}{{ tarsas.name }}{% endblock %}
 {% block content %}
+{{ csrfField }}
 {% for tarsas in tarsasok %}
 <h1>{{ tarsas.name }}</h1>
 
@@ -14,7 +15,7 @@
   <a class="btn btn-primary" href="{{ 'tarsas_page' | route({id: tarsas.id}) }}">Megtekintés</a>
   {% if currentUser.isAdmin==='TRUE'  %}
   <a class="btn btn-info" href="{{ 'tarsas_edit' | route({id: tarsas.id}) }}">Módosítás</a>
-  <a class="btn btn-danger" href="{{ 'tarsas_delete' | route({id: tarsas.id}) }}">Törlés</a>
+  <a class="btn btn-danger btn-delete" href="{{ 'tarsas_delete' | route({id: tarsas.id}) }}">Törlés</a>
   {% endif %}
 </div>
 
